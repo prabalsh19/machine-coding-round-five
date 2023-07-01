@@ -4,15 +4,20 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import "./RecipeCard.css";
 import { useRecipieContext } from "../../context/recipie-context";
+import { EditRecipieModal } from "../../components/EditRecipieModal/EditRecipieModal";
+import { useState } from "react";
+
 export const RecipieCard = ({ id, img, name, cuisineType }) => {
   const { setAllRecipies } = useRecipieContext();
   const deleteRecipieHandler = (id) => {
     setAllRecipies((prev) => prev.filter((recipie) => recipie.id !== id));
   };
+  const [showEditRecipeModal, setShowEditRecipeModal] = useState(false);
+
   return (
     <div className="recipie-card">
       <div className="actions">
-        <span>
+        <span onClick={() => setShowEditRecipeModal(true)}>
           <EditIcon />
         </span>
         <span onClick={() => deleteRecipieHandler(id)}>
@@ -35,6 +40,12 @@ export const RecipieCard = ({ id, img, name, cuisineType }) => {
           <span>See Recipe {">"}</span>
         </div>
       </Link>
+      {showEditRecipeModal && (
+        <EditRecipieModal
+          id={id}
+          setShowEditRecipeModal={setShowEditRecipeModal}
+        />
+      )}
     </div>
   );
 };

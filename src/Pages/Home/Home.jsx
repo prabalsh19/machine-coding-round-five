@@ -1,7 +1,6 @@
 import { Filter } from "../../components/Filter/Filter";
 import { RecipieCard } from "../../components/RecipeCard/RecipeCard";
 import { Search } from "../../components/Search/Search";
-import { recipies } from "../../db/db";
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import "./Home.css";
 import { useState } from "react";

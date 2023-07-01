@@ -1,41 +1,46 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import "./AddRecipieModal.css";
+import "../AddRecipieModal/AddRecipieModal.css";
 import { useRecipieContext } from "../../context/recipie-context";
-export const AddRecipeModal = ({ setShowAddRecipeModal }) => {
+
+export const EditRecipieModal = ({ id, setShowEditRecipeModal }) => {
+  const { allRecipies, setAllRecipies } = useRecipieContext();
+  const selectedRecipie = allRecipies.find((recipie) => +recipie.id === +id);
   const [formData, setFormData] = useState({
-    name: "",
-    cuisineType: "",
-    ingredients: "",
-    instructions: "",
-    img: "",
+    name: selectedRecipie.name,
+    cuisineType: selectedRecipie.cuisineType,
+    ingredients: selectedRecipie.ingredients.join(","),
+    instructions: selectedRecipie.instructions.join(","),
+    img: selectedRecipie.img,
   });
   const { name, cuisineType, img } = formData;
-  const { allRecipies, setAllRecipies } = useRecipieContext();
 
   const inputChangeHandler = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const addRecipieHandler = (e) => {
     e.preventDefault();
-    setAllRecipies((prev) => [
-      ...prev,
-      {
-        id: allRecipies.length + 1,
-        name,
-        cuisineType,
-        img,
-        ingredients: formData.ingredients.split(","),
-        instructions: formData.instructions.split(","),
-      },
-    ]);
 
-    setShowAddRecipeModal(false);
+    setAllRecipies((prev) =>
+      prev.map((recipie) =>
+        recipie.id === id
+          ? {
+              id: allRecipies.length + 1,
+              name,
+              cuisineType,
+              img,
+              ingredients: formData.ingredients.split(","),
+              instructions: formData.instructions.split(","),
+            }
+          : recipie
+      )
+    );
+    setShowEditRecipeModal(false);
   };
   return (
     <form onSubmit={addRecipieHandler} autoComplete="off">
       <div className="add-recipie-modal">
-        <h3>Add Recipie</h3>
+        <h3>Edit Recipie</h3>
         <input
           value={formData.name}
           type="text"
@@ -73,7 +78,7 @@ export const AddRecipeModal = ({ setShowAddRecipeModal }) => {
           onChange={(e) => inputChangeHandler(e)}
           name="img"
         />
-        <button className="add-btn">ADD</button>
+        <button className="add-btn">SUBMIT</button>
       </div>
     </form>
   );
