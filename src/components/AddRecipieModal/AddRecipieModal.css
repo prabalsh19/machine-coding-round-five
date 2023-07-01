@@ -1,0 +1,31 @@
+.add-recipie-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: wheat;
+  min-width: 25rem;
+  min-height: 25rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+.add-recipie-modal input {
+  padding: 10px;
+}
+.add-btn {
+  width: fit-content;
+  align-self: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: rgb(237, 157, 52);
+  font-weight: bold;
+  border: none;
+  border-radius: 1rem;
+}
+.add-btn:hover {
+  background-color: rgb(255, 145, 0);
+}

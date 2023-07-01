@@ -1,0 +1,19 @@
+.recipie-details > h1 {
+  text-align: center;
+}
+.details-card {
+  display: flex;
+  gap: 1rem;
+  width: 80%;
+  margin: auto;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.recipie-details svg {
+  padding: 10px;
+  border-radius: 50%;
+}
+.recipie-details svg:hover {
+  transition: 0.4s;
+  background-color: antiquewhite;
+}

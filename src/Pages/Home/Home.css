@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+.recipies-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.add-recipe-btn {
+  display: flex;
+  align-items: center;
+  margin-left: 3rem;
+  cursor: pointer;
+  width: 15rem;
+  height: 25rem;
+}
